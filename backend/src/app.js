@@ -8,16 +8,15 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      "https://researchpapertrackingf-86ff48ftq-lavish-sainiks-projects.vercel.app"
-    ],
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true
+    allowedHeaders: ["Content-Type", "Authorization"]
   })
 );
 
-app.options("*", cors());
+app.options("*", (req, res) => {
+  res.sendStatus(200);
+});
 
 app.use(express.json());
 
