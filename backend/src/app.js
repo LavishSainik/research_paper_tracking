@@ -1,12 +1,12 @@
 import express from "express";
 import cors from "cors";
+
 import paperRoutes from "./routes/paper.routes.js";
 import analyticsRoutes from "./routes/analytics.routes.js";
 
 const app = express();
 
-app.use(express.json());
-
+// 🔴 MUST be first
 app.use(
   cors({
     origin: "*",
@@ -15,7 +15,15 @@ app.use(
   })
 );
 
+app.use(express.json());
+
+// Routes
 app.use("/api/papers", paperRoutes);
 app.use("/api/analytics", analyticsRoutes);
+
+// Health check (IMPORTANT for testing)
+app.get("/api/health", (req, res) => {
+  res.json({ ok: true });
+});
 
 export default app;
