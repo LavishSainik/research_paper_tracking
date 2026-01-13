@@ -6,7 +6,19 @@ import analyticsRoutes from "./routes/analytics.routes.js";
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://researchpapertrackingf-86ff48ftq-lavish-sainiks-projects.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+  })
+);
+
+app.options("*", cors());
+
 app.use(express.json());
 
 app.get("/health", (req, res) => {

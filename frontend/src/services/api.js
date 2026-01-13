@@ -7,18 +7,7 @@ const api = axios.create({
     baseURL: API_BASE_URL,
 })
 
-app.use(
-  cors({
-    origin: [
-      "https://researchpapertrackingf-86ff48ftq-lavish-sainiks-projects.vercel.app"
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true
-  })
-);
 
-app.options("*", cors());
 
 
 //Papers basic apis
